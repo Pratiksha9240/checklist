@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Basics — Student Progress Checklist</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#5E48C4',
+                            purpleDark: '#4A3AAD',
+                            purpleMid: '#7B6ED4',
+                            purplePale: '#EAE7FE',
+                            purpleGhost: '#F5F4FF',
+                            yellow: '#FFD071',
+                            yellowDark: '#E6B84A',
+                            yellowPale: '#FFF3CC',
+                            nearBlack: '#1A1A1A',
+                            green: '#59A942',
+                            greenDark: '#397A2D',
+                            coral: '#ED5661'
+                        },
+                        alphagen: {
+                            purple: '#5E48C4',
+                            purpleDark: '#4A3AAD',
+                            purpleMid: '#7B6ED4',
+                            yellow: '#FFD071',
+                            yellowDark: '#E6B84A',
+                            nearBlack: '#1A1A1A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #F5F4FF; color: #1A1A1A; user-select: none; }
+        .yellow-highlight {
+            position: relative;
+            display: inline-block;
+        }
+        .yellow-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: #FFD071;
+            z-index: -1;
+            border-radius: 4px;
+        }
+        .checklist-item {
+            transition: all 0.2s ease;
+        }
+        .checklist-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(94, 72, 196, 0.08);
+        }
+        input[type="checkbox"] {
+            accent-color: #5E48C4;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #5E48C4; border-radius: 4px; }
+    </style>
+</head>
+
+<body class="min-h-screen w-screen flex flex-col">
+
+<!-- HEADER -->
+<header class="w-full bg-alphagen-purple px-4 py-3.5 flex flex-wrap items-center justify-between gap-3 text-white shadow-md rounded-2xl mb-4">
+    <div class="flex items-center gap-3">
+        <a href="#" class="bg-alphagen-yellow text-alphagen-nearBlack px-4 py-2 rounded-xl font-extrabold text-xs md:text-sm shadow-sm flex items-center gap-2">
+            <span>ALPHAGEN LEARNING</span>
+        </a>
+        <span class="font-extrabold text-base md:text-xl tracking-tight text-white">
+            Python Basics Checklist
+        </span>
+    </div>
+    <div class="text-xs font-bold bg-alphagen-purpleDark px-3 py-1.5 rounded-lg text-brand-yellow">
+        Student Progress Tracker
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="flex-1 max-w-3xl mx-auto w-full p-4 sm:p-6 flex flex-col gap-6">
+
+    <!-- TITLE CARD & PROGRESS -->
+    <div class="bg-white p-6 rounded-2xl border-2 border-brand-purplePale shadow-sm">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+            <div>
+                <h1 class="text-2xl font-extrabold text-brand-nearBlack">
+                    Master Python <span class="text-brand-purple yellow-highlight">Foundations</span>
+                </h1>
+                <p class="text-xs text-gray-500 mt-1">Check off each topic as you learn and code them!</p>
+            </div>
+            <div class="bg-brand-purpleGhost px-4 py-2 rounded-xl text-center border border-brand-purplePale">
+                <div class="text-[10px] uppercase font-bold text-brand-purple">Completed</div>
+                <div id="progress-count" class="text-lg font-extrabold text-brand-nearBlack">0 / 8</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+            <div id="progress-bar" class="bg-brand-purple h-full transition-all duration-300" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <!-- CHECKLIST LIST -->
+    <div class="flex flex-col gap-3">
+
+        <!-- Item 1 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">1. Print & Comments</span>
+                    <p class="text-[11px] text-gray-500">Using <code class="bg-gray-100 px-1 rounded text-brand-purple">print()</code> and writing code notes with <code class="bg-gray-100 px-1 rounded text-brand-purple">#</code>.</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Syntax</span>
+        </label>
+
+        <!-- Item 2 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">2. Variables & Assignment</span>
+                    <p class="text-[11px] text-gray-500">Storing values in variables like <code class="bg-gray-100 px-1 rounded text-brand-purple">score = 10</code>.</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Memory</span>
+        </label>
+
+        <!-- Item 3 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">3. Data Types</span>
+                    <p class="text-[11px] text-gray-500">Working with Strings (<code class="bg-gray-100 px-1 rounded text-brand-purple">str</code>), Integers (<code class="bg-gray-100 px-1 rounded text-brand-purple">int</code>), Floats (<code class="bg-gray-100 px-1 rounded text-brand-purple">float</code>), & Booleans (<code class="bg-gray-100 px-1 rounded text-brand-purple">bool</code>).</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Types</span>
+        </label>
+
+        <!-- Item 4 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">4. User Inputs & Type Casting</span>
+                    <p class="text-[11px] text-gray-500">Getting user input using <code class="bg-gray-100 px-1 rounded text-brand-purple">input()</code> and converting types with <code class="bg-gray-100 px-1 rounded text-brand-purple">int()</code>.</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">IO</span>
+        </label>
+
+        <!-- Item 5 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">5. Conditional Statements</span>
+                    <p class="text-[11px] text-gray-500">Making decisions using <code class="bg-gray-100 px-1 rounded text-brand-purple">if</code>, <code class="bg-gray-100 px-1 rounded text-brand-purple">elif</code>, and <code class="bg-gray-100 px-1 rounded text-brand-purple">else</code>.</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Logic</span>
+        </label>
+
+        <!-- Item 6 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">6. Loops (For & While)</span>
+                    <p class="text-[11px] text-gray-500">Repeating actions using <code class="bg-gray-100 px-1 rounded text-brand-purple">for item in range()</code> and <code class="bg-gray-100 px-1 rounded text-brand-purple">while</code> loops.</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Loops</span>
+        </label>
+
+        <!-- Item 7 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">7. Functions & Parameters</span>
+                    <p class="text-[11px] text-gray-500">Defining reusable code blocks with <code class="bg-gray-100 px-1 rounded text-brand-purple">def</code> and returning values.</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Functions</span>
+        </label>
+
+        <!-- Item 8 -->
+        <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-3">
+                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <div>
+                    <span class="font-bold text-sm text-brand-nearBlack">8. Lists & Basic Collections</span>
+                    <p class="text-[11px] text-gray-500">Storing multiple items in lists <code class="bg-gray-100 px-1 rounded text-brand-purple">[ ]</code> and accessing by index.</p>
+                </div>
+            </div>
+            <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Data Structures</span>
+        </label>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-gray-200 px-6 py-4 mt-6 text-center text-xs font-bold text-gray-500">
+    Alphagen Learning — Python Basics Checklist &copy; 2026
+</footer>
+
+<!-- SCRIPT -->
+<script>
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('.topic-chk');
+        const total = checkboxes.length;
+        let checkedCount = 0;
+
+        checkboxes.forEach(chk => {
+            if (chk.checked) checkedCount++;
+        });
+
+        const percent = Math.round((checkedCount / total) * 100);
+        document.getElementById('progress-count').innerText = `${checkedCount} / ${total}`;
+        document.getElementById('progress-bar').style.width = `${percent}%`;
+
+        if (checkedCount === total) {
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
