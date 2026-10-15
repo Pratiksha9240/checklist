@@ -134,7 +134,7 @@
         <!-- Item 1 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">1. Print & Comments</span>
                     <p class="text-[11px] text-gray-500">Using <code class="bg-gray-100 px-1 rounded text-brand-purple">print()</code> and writing code notes with <code class="bg-gray-100 px-1 rounded text-brand-purple">#</code>.</p>
@@ -142,11 +142,22 @@
             </div>
             <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Syntax</span>
         </label>
+        <div class="topic-task hidden bg-brand-yellowPale border-2 border-brand-yellow rounded-xl p-4 text-sm" data-task="0">
+            <h3 class="font-bold text-brand-nearBlack mb-2">Task: Create a Floorball Match Report</h3>
+            <p class="mb-2">Create a match report using the given information. Display this output:</p>
+            <pre class="whitespace-pre-wrap font-mono text-xs bg-white p-3 rounded-lg">🏑 FLOORBALL MATCH REPORT
+
+Team: Thunder
+Opponent: Falcons
+Venue: Sports Hall A
+
+Prepare for the match!</pre>
+        </div>
 
         <!-- Item 2 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">2. Variables & Assignment</span>
                     <p class="text-[11px] text-gray-500">Storing values in variables like <code class="bg-gray-100 px-1 rounded text-brand-purple">score = 10</code>.</p>
@@ -154,11 +165,16 @@
             </div>
             <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Memory</span>
         </label>
+        <div class="topic-task hidden bg-brand-yellowPale border-2 border-brand-yellow rounded-xl p-4 text-sm" data-task="1">
+            <h3 class="font-bold text-brand-nearBlack mb-2">Task: Update the Match Score</h3>
+            <p>Thunder is leading 3–2. During the match, Thunder scores twice more, while Falcons scores once.</p>
+            <p class="mt-2">Complete the code to display the updated score.</p>
+        </div>
 
         <!-- Item 3 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">3. Data Types</span>
                     <p class="text-[11px] text-gray-500">Working with Strings (<code class="bg-gray-100 px-1 rounded text-brand-purple">str</code>), Integers (<code class="bg-gray-100 px-1 rounded text-brand-purple">int</code>), Floats (<code class="bg-gray-100 px-1 rounded text-brand-purple">float</code>), & Booleans (<code class="bg-gray-100 px-1 rounded text-brand-purple">bool</code>).</p>
@@ -170,7 +186,7 @@
         <!-- Item 4 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">4. User Inputs & Type Casting</span>
                     <p class="text-[11px] text-gray-500">Getting user input using <code class="bg-gray-100 px-1 rounded text-brand-purple">input()</code> and converting types with <code class="bg-gray-100 px-1 rounded text-brand-purple">int()</code>.</p>
@@ -178,11 +194,16 @@
             </div>
             <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">IO</span>
         </label>
+        <div class="topic-task hidden bg-brand-yellowPale border-2 border-brand-yellow rounded-xl p-4 text-sm" data-task="3">
+            <h3 class="font-bold text-brand-nearBlack mb-2">Task: Calculate Player Points</h3>
+            <p>Ask the user for the number of goals and assists earned by a floorball player.</p>
+            <p class="mt-2">Calculate the total points, assuming each goal and assist counts as one point.</p>
+        </div>
 
         <!-- Item 5 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">5. Conditional Statements</span>
                     <p class="text-[11px] text-gray-500">Making decisions using <code class="bg-gray-100 px-1 rounded text-brand-purple">if</code>, <code class="bg-gray-100 px-1 rounded text-brand-purple">elif</code>, and <code class="bg-gray-100 px-1 rounded text-brand-purple">else</code>.</p>
@@ -190,11 +211,35 @@
             </div>
             <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Logic</span>
         </label>
+        <div class="topic-task hidden bg-brand-yellowPale border-2 border-brand-yellow rounded-xl p-4 text-sm" data-task="4">
+            <h3 class="font-bold text-brand-nearBlack mb-2">Task 1: Compare the Match Scores</h3>
+            <p>Ask the user to enter both teams' scores. Display:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li><code>"Thunder is winning!"</code> if Thunder has more goals.</li>
+                <li><code>"Falcons is winning!"</code> if Falcons has more goals.</li>
+                <li><code>"The match is tied!"</code> if both scores are equal.</li>
+            </ul>
+            <h3 class="font-bold text-brand-nearBlack mt-4 mb-2">Task 2: Rate a Player's Performance</h3>
+            <p>Ask the user to enter the player's total points and display the correct rating.</p>
+            <div class="overflow-x-auto mt-2">
+                <table class="w-full text-left border-collapse bg-white rounded-lg overflow-hidden">
+                    <thead><tr><th class="border border-gray-200 p-2">Total points</th><th class="border border-gray-200 p-2">Rating</th></tr></thead>
+                    <tbody>
+                        <tr><td class="border border-gray-200 p-2">10 or more</td><td class="border border-gray-200 p-2">Excellent</td></tr>
+                        <tr><td class="border border-gray-200 p-2">7–9</td><td class="border border-gray-200 p-2">Very Good</td></tr>
+                        <tr><td class="border border-gray-200 p-2">4–6</td><td class="border border-gray-200 p-2">Good</td></tr>
+                        <tr><td class="border border-gray-200 p-2">1–3</td><td class="border border-gray-200 p-2">Needs Improvement</td></tr>
+                        <tr><td class="border border-gray-200 p-2">0</td><td class="border border-gray-200 p-2">No points scored</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-2"><strong>Challenge:</strong> Add a message for a player who enters a negative number. This will test whether the student considers invalid input.</p>
+        </div>
 
         <!-- Item 6 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">6. Loops (For & While)</span>
                     <p class="text-[11px] text-gray-500">Repeating actions using <code class="bg-gray-100 px-1 rounded text-brand-purple">for item in range()</code> and <code class="bg-gray-100 px-1 rounded text-brand-purple">while</code> loops.</p>
@@ -202,11 +247,21 @@
             </div>
             <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Loops</span>
         </label>
+        <div class="topic-task hidden bg-brand-yellowPale border-2 border-brand-yellow rounded-xl p-4 text-sm" data-task="5">
+            <h3 class="font-bold text-brand-nearBlack mb-2">Task: Final Whistle Countdown</h3>
+            <p>A floorball team is trailing 4–5 with 60 seconds remaining.</p>
+            <p class="mt-2">Write a program that:</p>
+            <ol class="list-decimal pl-5 mt-1 space-y-1">
+                <li>Starts a countdown at 60.</li>
+                <li>Prints the remaining time in 10-second intervals.</li>
+                <li>Displays <code>"Final whistle!"</code> when the countdown reaches zero.</li>
+            </ol>
+        </div>
 
         <!-- Item 7 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">7. Functions & Parameters</span>
                     <p class="text-[11px] text-gray-500">Defining reusable code blocks with <code class="bg-gray-100 px-1 rounded text-brand-purple">def</code> and returning values.</p>
@@ -214,11 +269,22 @@
             </div>
             <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Functions</span>
         </label>
+        <div class="topic-task hidden bg-brand-yellowPale border-2 border-brand-yellow rounded-xl p-4 text-sm" data-task="6">
+            <h3 class="font-bold text-brand-nearBlack mb-2">Task: Calculate Player Points with a Function</h3>
+            <p>A floorball coach wants to calculate a player's total points from goals and assists.</p>
+            <p class="mt-2">Write a function called <code>calculate_points()</code> that:</p>
+            <ol class="list-decimal pl-5 mt-1 space-y-1">
+                <li>Accepts the number of goals and assists as parameters.</li>
+                <li>Calculates and returns the total points, assuming each goal and assist counts as one point.</li>
+                <li>Calls the function with <code>5</code> goals and <code>3</code> assists.</li>
+                <li>Displays the total points returned by the function.</li>
+            </ol>
+        </div>
 
         <!-- Item 8 -->
         <label class="checklist-item bg-white p-4 rounded-xl border-2 border-brand-purplePale flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
-                <input type="checkbox" onchange="updateProgress()" class="topic-chk">
+                <input type="checkbox" onchange="toggleTask(this); updateProgress()" class="topic-chk">
                 <div>
                     <span class="font-bold text-sm text-brand-nearBlack">8. Lists & Basic Collections</span>
                     <p class="text-[11px] text-gray-500">Storing multiple items in lists <code class="bg-gray-100 px-1 rounded text-brand-purple">[ ]</code> and accessing by index.</p>
@@ -226,6 +292,18 @@
             </div>
             <span class="text-xs font-mono bg-brand-purpleGhost text-brand-purple px-2 py-1 rounded">Data Structures</span>
         </label>
+        <div class="topic-task hidden bg-brand-yellowPale border-2 border-brand-yellow rounded-xl p-4 text-sm" data-task="7">
+            <h3 class="font-bold text-brand-nearBlack mb-2">Task: Track Goals Across Matches</h3>
+            <p>A floorball team records the goals scored in its last five matches:</p>
+            <pre class="font-mono text-xs bg-white p-3 rounded-lg mt-2">goals = [3, 2, 5, 1, 4]</pre>
+            <p class="mt-2">Write a program to:</p>
+            <ol class="list-decimal pl-5 mt-1 space-y-1">
+                <li>Display the list of goals.</li>
+                <li>Display the goals scored in the first and last matches.</li>
+                <li>Add the goals scored in the latest match (<code>6</code>) to the list.</li>
+                <li>Display the updated list.</li>
+            </ol>
+        </div>
 
     </div>
 
@@ -238,6 +316,14 @@
 
 <!-- SCRIPT -->
 <script>
+    function toggleTask(checkbox) {
+        const item = checkbox.closest('label');
+        const task = item.nextElementSibling;
+        if (task && task.classList.contains('topic-task')) {
+            task.classList.toggle('hidden', !checkbox.checked);
+        }
+    }
+
     function updateProgress() {
         const checkboxes = document.querySelectorAll('.topic-chk');
         const total = checkboxes.length;
